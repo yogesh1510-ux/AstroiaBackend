@@ -29,7 +29,7 @@ exports.submitLead = async (req, res) => {
       { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
     );
 
-    if (response.data.code === 200 && response.data.status === "success") {
+    if (response.data.code === 200 || response.data.status === "success") {
       const lead = new Lead({ name, email, phone });
       await lead.save();
 
