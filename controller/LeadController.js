@@ -42,7 +42,10 @@ exports.submitLead = async (req, res) => {
       return res.status(400).json({
         success: false,
         msg: "CRM submission failed",
-        crm: response.data,
+        crm: {
+          ...response.data,
+          message: response.data.message || "Unknown CRM error",
+        },
       });
     }
   } catch (err) {
