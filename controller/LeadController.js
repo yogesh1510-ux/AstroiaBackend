@@ -6,9 +6,6 @@ exports.submitLead = async (req, res) => {
   const { name, email, phone } = req.body;
 
   try {
-    const lead = new Lead({ name, email, phone });
-    await lead.save();
-
     const [firstName, ...last] = name.split(" ");
 
     const payload = qs.stringify({
@@ -51,6 +48,7 @@ exports.submitLead = async (req, res) => {
       });
     }
   } catch (err) {
+    console.error("Submission failed:", err.message);
     res.status(500).json({ error: "Submission failed", detail: err.message });
   }
 };
