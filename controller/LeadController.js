@@ -29,6 +29,8 @@ exports.submitLead = async (req, res) => {
       { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
     );
 
+    console.log("CRM response:", response.data);
+
     if (response.data.code === 200 || response.data.status === "success") {
       const lead = new Lead({ name, email, phone });
       await lead.save();
